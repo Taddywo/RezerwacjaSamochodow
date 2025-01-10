@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Car>
+
+<h2>Cars</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Price per Day</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var car in Model)
+        {
+            <tr>
+                <td>@car.Brand</td>
+                <td>@car.Model</td>
+                <td>@car.Year</td>
+                <td>@car.PricePerDay</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = car.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = car.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = car.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p>
+    @Html.ActionLink("Create New Car", "Create", null, new { @class = "btn btn-primary" })
+</p>
