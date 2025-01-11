@@ -20,5 +20,9 @@ namespace RezerwacjaSamochodow.Models
         [Range(1, 10000)]
         public decimal PricePerDay { get; set; }
 
+        [Range(1, 10000)]
+        public string Owner { get; set; }
+
+
     }
 }

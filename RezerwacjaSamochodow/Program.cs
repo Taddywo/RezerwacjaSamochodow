@@ -4,7 +4,7 @@ using RezerwacjaSamochodow.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Dodawanie us³ug do kontenera
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -19,7 +19,7 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure middleware
+// Konfiguracja middleware
 app.UseAuthentication();
 app.UseAuthorization();
 

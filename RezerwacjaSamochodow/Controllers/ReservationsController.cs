@@ -59,7 +59,7 @@ public class ReservationsController : Controller
     // GET: Reservations/Create
     public IActionResult Create()
     {
-        // No cars shown initially, user needs to select a date
+        // Poczatkowo nie sa wyswietlane zadne samochody, uzytkownik musi wybrac date
         ViewData["CarId"] = new SelectList(Enumerable.Empty<Car>(), "Id", "Brand");
         return View();
     }
@@ -76,7 +76,7 @@ public class ReservationsController : Controller
 
         if (ModelState.IsValid)
         {
-            // Find cars that are not reserved in the specified date range
+            // Znajdz samochody, ktore nie sa zarezerwowane w okreslonym zakresie dat.
             //DateTime StartDate = new DateTime(reservationDto.StartDate.Ticks, DateTimeKind.Utc);
             //DateTime EndDate = new DateTime(reservationDto.EndDate.Ticks, DateTimeKind.Utc);
             var reservedCarIds = _context.Reservations
@@ -157,7 +157,7 @@ public class ReservationsController : Controller
             return View(reservationDto);
         }
 
-        // Fetch the reservation from the database
+        // Pobranie rezerwacji z bazy danych
         var reservation = await _context.Reservations.Include(r => r.Car).FirstOrDefaultAsync(r => r.Id == id);
         if (reservation == null)
         {

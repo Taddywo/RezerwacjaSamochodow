@@ -240,7 +240,7 @@ namespace RezerwacjaSamochodow.Migrations
                 column: "CarId");
 
             /////// UZUPEŁNIANIE DANYCH!
-            // Adding the Admin role
+            // Dodawanie roli administratora
             string adminRoleId = Guid.NewGuid().ToString();
             string adminRoleName = "Admin";
             migrationBuilder.InsertData(
@@ -249,10 +249,10 @@ namespace RezerwacjaSamochodow.Migrations
                 values: new object[] { adminRoleId, adminRoleName, adminRoleName.ToUpper(), Guid.NewGuid().ToString() }
             );
 
-            // Adding a sample user
+            // Dodawanie przykładowego uzytkownika
             string userId = Guid.NewGuid().ToString();
             string userEmail = "admin@example.com";
-            string userPassword = "Haslo123!"; // Plaintext for demonstration; use hashed passwords in production
+            string userPassword = "Haslo123!"; 
             var passwordHasher = new PasswordHasher<IdentityUser>();
             string hashedPassword = passwordHasher.HashPassword(null, userPassword);
 
@@ -262,16 +262,16 @@ namespace RezerwacjaSamochodow.Migrations
                 values: new object[] { userId, userEmail, userEmail.ToUpper(), userEmail, userEmail.ToUpper(), true, hashedPassword, Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), false, false, true, 0 }
             );
 
-            // Assign the user to the Admin role
+            // Przypisanie uzytkownika do roli administratora
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "UserId", "RoleId" },
                 values: new object[] { userId, adminRoleId }
             );
-            // Adding a regular sample user
+            // Dodawanie zwyklego przykladowego uzytkownika
             string regularUserId = Guid.NewGuid().ToString();
             string regularUserEmail = "regularuser@example.com";
-            string regularUserPassword = "Haslo123!"; // Use hashed passwords in production
+            string regularUserPassword = "Haslo123!"; 
             string regularUserHashedPassword = passwordHasher.HashPassword(null, regularUserPassword);
 
             migrationBuilder.InsertData(
